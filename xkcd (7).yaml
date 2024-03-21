@@ -1,0 +1,32 @@
+openapi: 3.0.0
+servers:
+  - url: http://localhost:8080/
+info:
+  description: Webcomic of romance, sarcasm, math, and language.
+  title: XKCD
+  version: 1.0.0
+paths:
+  /home/public:
+    get:
+      description: |
+        Fetch current comic and metadata.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/comic"
+          description: OK
+components:
+  schemas:
+    comic:
+      x-flow-type:
+          name: comic
+      x-flow-query:
+          path: /home/public
+          operation: get    
+      properties:
+        alt:
+          type: string
+        id:
+          type: string
